@@ -64,6 +64,15 @@ public class LoginOrSignUPPage extends BasePage{
     @FindBy(xpath = "//a[text()='Continue']")
     WebElement continueBtn;
 
+    @FindBy(xpath = "//div[@class='login-form']//input[@name='email']")
+    WebElement loginEmailInput;
+
+    @FindBy(xpath = "//div[@class='login-form']//input[@name='password']")
+    WebElement loginPasswordInput;
+
+    @FindBy(xpath = "//button[text()='Login']")
+    WebElement loginBtn;
+
     public boolean isEnterAccountInformationVisible() {
         return enterAccountInfoTitle.isDisplayed();
     }
@@ -114,4 +123,9 @@ public class LoginOrSignUPPage extends BasePage{
     }
 
 
+    public void doLogin() {
+        loginEmailInput.sendKeys(ConfigReader.getConfig("email"));
+        loginPasswordInput.sendKeys(ConfigReader.getConfig("password"));
+        loginBtn.click();
+    }
 }
